@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
 import 'dashboard_screen.dart';
 const users = {
-  'dribbble@gmail.com': '12345',
+  'tigor7750@gmail.com': 'qwerty123',
   'hunter@gmail.com': 'hunter',
 };
 
@@ -16,6 +16,7 @@ class LoginScreen extends StatelessWidget {
         return 'User not exists';
       }
       if (users[data.name] != data.password) {
+        //Navigator.pushNamedAndRemoveUntil(context,'/registration',(route)=> true);
         return 'Password does not match';
       }
       return null;
@@ -42,8 +43,8 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FlutterLogin(
-      title: 'Rossety',
-      logo: AssetImage('assets/seti.jpg'),
+      title: 'Служба доставки мощности',
+      logo: AssetImage('assets/Log1.png'),
       onLogin: _authUser,
       onSignup: _signupUser,
       onSubmitAnimationCompleted: () {

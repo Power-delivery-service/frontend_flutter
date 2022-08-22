@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:latlng/latlng.dart';
 import 'package:map/map.dart';
 
+import 'Response.dart';
+
 class MainPage extends StatefulWidget {
-  const MainPage({Key? key}) : super(key: key);
+  MainPage({Key? key}) : super(key: key);
 
   @override
   MainPageState createState() => MainPageState();
@@ -15,7 +17,11 @@ class MainPageState extends State<MainPage> {
   final controller = MapController(
     location: const LatLng(55.1425, 61.5396),
   );
-
+  List lst = [];
+  var startX = 55.09;
+  var startY = 61.25;
+  var targetX = 0;
+  var targetY = 0;
   void _gotoDefault() {
     controller.center = const LatLng(55.09, 61.25);
     setState(() {});
@@ -35,6 +41,8 @@ class MainPageState extends State<MainPage> {
     transformer.setZoomInPlace(zoom, position);
     setState(() {});
   }
+
+
 
   Offset? _dragStart;
   double _scaleStart = 1.0;
@@ -74,6 +82,15 @@ class MainPageState extends State<MainPage> {
             child: Image.asset('assets/Log1.png'),
           ), Text('Служба доставки мощности')],
         ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.settings),
+            tooltip: 'Test version',
+            onPressed: () {
+              Navigator.pushNamedAndRemoveUntil(context,'/test',(route)=> true);
+            },
+          ),
+        ],
         backgroundColor: Colors.orangeAccent,
       ),
       body: MapLayout(
@@ -101,16 +118,6 @@ class MainPageState extends State<MainPage> {
               },
               child: Stack(
                 children: <Widget>[
-                  Center(
-                    child:
-                      SizedBox(
-                          width: 200,
-                          height: 50,
-                        child: Image.asset('assets/point.png'),
-                      ),
-
-
-                  ),
                   TileLayer(
                     builder: (context, x, y, z) {
                       //x = 23;
@@ -125,6 +132,16 @@ class MainPageState extends State<MainPage> {
                         imageUrl: url,
                         fit: BoxFit.cover,);
                     },
+                  ),
+                  Center(
+                    child:
+                    SizedBox(
+                      width: 200,
+                      height: 50,
+                      child: Image.asset('assets/point.png'),
+                    ),
+
+
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -142,11 +159,10 @@ class MainPageState extends State<MainPage> {
                                 child: ElevatedButton(onPressed: () {
                                   Navigator.pushNamedAndRemoveUntil(context,'/registration',(route)=> true);
                                 },
-                                    child: const Text('Информация о проекте')),
+                                    child: const Text('О доставке')),
                               ),
                             ],
                           ),
-
                           Column(
                             children: [
 
@@ -156,7 +172,7 @@ class MainPageState extends State<MainPage> {
                                 child: ElevatedButton(onPressed: () {
                                   Navigator.pushNamedAndRemoveUntil(context,'/registration',(route)=> true);
                                 },
-                                    child: const Text('Условия доставки')),
+                                    child: const Text('Документы')),
                               ),
                             ],
                           ),
@@ -185,6 +201,7 @@ class MainPageState extends State<MainPage> {
                                     child: const Text('Контактные данные')),
                               ),
 
+
                               Padding(
                                 padding: const EdgeInsets.fromLTRB(0,300,0,0),
                                 child: SizedBox(
@@ -192,9 +209,11 @@ class MainPageState extends State<MainPage> {
                                   width: 200,
                                   height: 100,
                                   child: ElevatedButton(onPressed: () {
-                                    print(controller.center.latitude.toString() + " " + controller.center.longitude.toString());
+                                    Navigator.pushNamedAndRemoveUntil(context,'/categories',(route)=> true);
+                                    createAlbum(MainPageState().startX,startY,targetX,targetY);
                                   },
                                       child: const Text('Заказать доставку'),
+
                                       style: ElevatedButton.styleFrom(shape: StadiumBorder())),
 
                                 ),
