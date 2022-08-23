@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -18,10 +20,10 @@ class MainPageState extends State<MainPage> {
     location: const LatLng(55.1425, 61.5396),
   );
   List lst = [];
-  var startX = 55.09;
-  var startY = 61.25;
-  var targetX = 0;
-  var targetY = 0;
+  String startX = '55.09';
+  String startY = '61.25';
+  String targetX = '0';
+  String targetY = '0';
   void _gotoDefault() {
     controller.center = const LatLng(55.09, 61.25);
     setState(() {});
@@ -69,6 +71,9 @@ class MainPageState extends State<MainPage> {
       setState(() {});
     }
   }
+
+  String name = ""; //user's response will be assigned to this variable
+
 
   @override
   Widget build(BuildContext context) {
@@ -208,9 +213,38 @@ class MainPageState extends State<MainPage> {
 
                                   width: 200,
                                   height: 100,
-                                  child: ElevatedButton(onPressed: () {
-                                    Navigator.pushNamedAndRemoveUntil(context,'/categories',(route)=> true);
-                                    createAlbum(MainPageState().startX,startY,targetX,targetY);
+                                  child: ElevatedButton(onPressed: () async {
+                                    //Navigator.pushNamedAndRemoveUntil(context,'/categories',(route)=> true);
+                                    // await createAlbum(MainPageState().startX,startY,targetX,targetY);
+                                    /*
+                                    POST /set_geodata HTTP/1.1
+                                    Accept: * / * (убрать пробел перед и после /)
+                                    Accept-Encoding: gzip, deflate, br
+                                    Accept-Language: ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7
+                                    Connection: keep-alive
+                                    Content-Length: 0
+                                    Content-Type: application/x-www-form-urlencoded
+                                    Host: 127.0.0.1:7777
+                                    Origin: http://127.0.0.1:7777
+                                    Referer: http://127.0.0.1:7777/set_geodata
+                                    Sec-Fetch-Dest: empty
+                                    Sec-Fetch-Mode: cors
+                                    Sec-Fetch-Site: same-origin
+                                    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.102 Safari/537.36
+                                    sec-ch-ua: "Chromium";v="104", " Not A;Brand";v="99", "Google Chrome";v="104"
+                                    sec-ch-ua-mobile: ?0
+                                    sec-ch-ua-platform: "Windows"
+                                     */
+                                    final url = 'http://192.168.43.172:7777/set_geodata';
+                                    final response = await http.post(Uri.parse(url),    headers: <String, String>{
+                                      'Content-Type': 'application/json'
+                                    },
+                                      body: jsonEncode(<String, String>{
+                                        'point_start_x': startX,
+                                        'point_start_y': startY,
+                                        'point_target_x': targetX,
+                                        'point_target_y': targetY
+                                      }),);
                                   },
                                       child: const Text('Заказать доставку'),
 

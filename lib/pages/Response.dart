@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-Future<http.Response> createAlbum(startX, startY, targetX, targetY)   {
-  return  http.post(
+Future<http.Response> createAlbum(startX, startY, targetX, targetY) async  {
+  return  await http.post(
     Uri.parse('http://192.168.43.172:7777/set_geodata'),
     headers: <String, String>{
       'Content-Type': 'application/json'

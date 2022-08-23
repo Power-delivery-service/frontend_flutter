@@ -130,9 +130,9 @@ class TestPageState extends State<TestPage> {
                   Center(
                     child:
                     SizedBox(
-                      width: 1000,
-                      height: 1000,
-                      child: Image.asset('assets/seti.jpg'),
+                      width: 100,
+                      height: 100,
+                      child: Image.asset('assets/rail.jpg'),
                     ),
                   ),
                   Row(
@@ -267,6 +267,7 @@ class TestPageState extends State<TestPage> {
                       child: Image.asset('assets/point.png'),
                     ),
                   ),
+
                 ],
               ),
             ),
