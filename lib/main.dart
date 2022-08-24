@@ -4,12 +4,13 @@ import 'package:rosseti/pages/MainPage.dart';
 import 'package:rosseti/pages/registration.dart';
 import 'package:rosseti/pages/Categories.dart';
 import 'package:rosseti/pages/testSite.dart';
+import 'package:rosseti/pages/aboutDelivery.dart';
 import 'package:map/map.dart';
 
 void main() => runApp(MaterialApp(
   debugShowCheckedModeBanner: false,
   theme: ThemeData(
-      primaryColor: Colors.deepOrangeAccent
+      primaryColor: const Color.fromRGBO(79, 79, 79, 1)
   ),
   initialRoute: '/',
     routes:{
@@ -18,6 +19,7 @@ void main() => runApp(MaterialApp(
       '/registration': (context) =>  LoginScreen(),
       '/categories': (context) =>  Categories(),
       '/test': (context) => TestPage(),
+      '/delivery': (context) => DeliveryPage(),
 
 
     },
