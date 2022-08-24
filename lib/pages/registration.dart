@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
 import 'dashboard_screen.dart';
+
 const users = {
   'tigor7750@gmail.com': 'qwerty123',
   'hunter@gmail.com': 'hunter',
@@ -44,7 +45,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return FlutterLogin(
       title: 'Служба доставки мощности',
-      logo: AssetImage('assets/Log1.png'),
+      logo: AssetImage('assets/logo.png'),
       onLogin: _authUser,
       onSignup: _signupUser,
       onSubmitAnimationCompleted: () {

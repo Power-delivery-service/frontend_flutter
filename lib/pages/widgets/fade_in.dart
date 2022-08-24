@@ -17,7 +17,7 @@ class FadeIn extends StatefulWidget {
     this.curve = Curves.easeOut,
     required this.child,
   })  : assert(controller == null && duration != null ||
-      controller != null && duration == null),
+            controller != null && duration == null),
         assert(offset > 0),
         super(key: key);
 

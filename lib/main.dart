@@ -8,19 +8,15 @@ import 'package:rosseti/pages/aboutDelivery.dart';
 import 'package:map/map.dart';
 
 void main() => runApp(MaterialApp(
-  debugShowCheckedModeBanner: false,
-  theme: ThemeData(
-      primaryColor: const Color.fromRGBO(79, 79, 79, 1)
-  ),
-  initialRoute: '/',
-    routes:{
-      '/':(context) => MainPage(),
-      '/home': (context) => const Home(),
-      '/registration': (context) =>  LoginScreen(),
-      '/categories': (context) =>  Categories(),
-      '/test': (context) => TestPage(),
-      '/delivery': (context) => DeliveryPage(),
-
-
-    },
-));
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(primaryColor: const Color.fromRGBO(79, 79, 79, 1)),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => MainPage(),
+        '/home': (context) => const Home(),
+        '/registration': (context) => LoginScreen(),
+        '/categories': (context) => Categories(),
+        '/test': (context) => TestPage(),
+        '/delivery': (context) => DeliveryPage(),
+      },
+    ));

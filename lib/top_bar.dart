@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class TopBarContents extends StatefulWidget {
-
   TopBarContents();
 
   @override
@@ -27,15 +26,17 @@ class _TopBarContentsState extends State<TopBarContents> {
       color: Colors.white.withOpacity(0.5),
       child: Padding(
         padding: const EdgeInsets.all(20),
-        child:
-        Expanded(
+        child: Expanded(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               SizedBox(
-                  width:60,
-                  height:60,
-                  child: Image.asset("assets/logo.png",fit: BoxFit.fitWidth,)),
+                  width: 60,
+                  height: 60,
+                  child: Image.asset(
+                    "assets/logo.png",
+                    fit: BoxFit.fitWidth,
+                  )),
               const Text(
                 'РЭД',
                 style: TextStyle(
@@ -50,13 +51,12 @@ class _TopBarContentsState extends State<TopBarContents> {
               InkWell(
                 onHover: (value) {
                   setState(() {
-                    value
-                        ? _isHovering[0] = true
-                        : _isHovering[0] = false;
+                    value ? _isHovering[0] = true : _isHovering[0] = false;
                   });
                 },
                 onTap: () {
-                  Navigator.pushNamedAndRemoveUntil(context,'/registration',(route)=> true);
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, '/registration', (route) => true);
                 },
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -68,8 +68,7 @@ class _TopBarContentsState extends State<TopBarContents> {
                               ? const Color(0xFF077bd7)
                               : const Color(0xFF077bd7),
                           fontWeight: FontWeight.bold,
-                          fontSize: 16
-                      ),
+                          fontSize: 16),
                     ),
                     const SizedBox(height: 5),
                     Visibility(
@@ -90,13 +89,12 @@ class _TopBarContentsState extends State<TopBarContents> {
               InkWell(
                 onHover: (value) {
                   setState(() {
-                    value
-                        ? _isHovering[1] = true
-                        : _isHovering[1] = false;
+                    value ? _isHovering[1] = true : _isHovering[1] = false;
                   });
                 },
                 onTap: () {
-                  Navigator.pushNamedAndRemoveUntil(context,'/delivery',(route)=> true);
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, '/delivery', (route) => true);
                 },
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -108,8 +106,7 @@ class _TopBarContentsState extends State<TopBarContents> {
                               ? const Color(0xFF077bd7)
                               : const Color(0xFF077bd7),
                           fontWeight: FontWeight.bold,
-                          fontSize: 16
-                      ),
+                          fontSize: 16),
                     ),
                     const SizedBox(height: 5),
                     Visibility(
@@ -130,13 +127,12 @@ class _TopBarContentsState extends State<TopBarContents> {
               InkWell(
                 onHover: (value) {
                   setState(() {
-                    value
-                        ? _isHovering[2] = true
-                        : _isHovering[2] = false;
+                    value ? _isHovering[2] = true : _isHovering[2] = false;
                   });
                 },
                 onTap: () {
-                  Navigator.pushNamedAndRemoveUntil(context,'/registration',(route)=> true);
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, '/registration', (route) => true);
                 },
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -148,8 +144,7 @@ class _TopBarContentsState extends State<TopBarContents> {
                               ? const Color(0xFF077bd7)
                               : const Color(0xFF077bd7),
                           fontWeight: FontWeight.bold,
-                          fontSize: 16
-                      ),
+                          fontSize: 16),
                     ),
                     const SizedBox(height: 5),
                     Visibility(
@@ -170,13 +165,12 @@ class _TopBarContentsState extends State<TopBarContents> {
               InkWell(
                 onHover: (value) {
                   setState(() {
-                    value
-                        ? _isHovering[3] = true
-                        : _isHovering[3] = false;
+                    value ? _isHovering[3] = true : _isHovering[3] = false;
                   });
                 },
                 onTap: () {
-                  Navigator.pushNamedAndRemoveUntil(context,'/registration',(route)=> true);
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, '/registration', (route) => true);
                 },
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -188,8 +182,7 @@ class _TopBarContentsState extends State<TopBarContents> {
                               ? const Color(0xFF077bd7)
                               : const Color(0xFF077bd7),
                           fontWeight: FontWeight.bold,
-                          fontSize: 16
-                      ),
+                          fontSize: 16),
                     ),
                     const SizedBox(height: 5),
                     Visibility(
@@ -210,13 +203,12 @@ class _TopBarContentsState extends State<TopBarContents> {
               InkWell(
                 onHover: (value) {
                   setState(() {
-                    value
-                        ? _isHovering[4] = true
-                        : _isHovering[4] = false;
+                    value ? _isHovering[4] = true : _isHovering[4] = false;
                   });
                 },
                 onTap: () {
-                  Navigator.pushNamedAndRemoveUntil(context,'/registration',(route)=> true);
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, '/registration', (route) => true);
                 },
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -228,8 +220,7 @@ class _TopBarContentsState extends State<TopBarContents> {
                               ? const Color(0xFF077bd7)
                               : const Color(0xFF077bd7),
                           fontWeight: FontWeight.bold,
-                          fontSize: 16
-                      ),
+                          fontSize: 16),
                     ),
                     const SizedBox(height: 5),
                     Visibility(
@@ -249,9 +240,7 @@ class _TopBarContentsState extends State<TopBarContents> {
             ],
           ),
         ),
-
       ),
-
     );
     //);
   }

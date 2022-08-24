@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class TransitionRouteObserver<R extends TransitionRoute<dynamic>?>
     extends NavigatorObserver {
   final Map<R, Set<TransitionRouteAware>> _listeners =
-  <R, Set<TransitionRouteAware>>{};
+      <R, Set<TransitionRouteAware>>{};
 
   /// Subscribe [routeAware] to be informed about changes to [route].
   ///
@@ -15,7 +15,7 @@ class TransitionRouteObserver<R extends TransitionRoute<dynamic>?>
   void subscribe(TransitionRouteAware routeAware, R route) {
     assert(route != null);
     final subscribers =
-    _listeners.putIfAbsent(route, () => <TransitionRouteAware>{});
+        _listeners.putIfAbsent(route, () => <TransitionRouteAware>{});
     if (subscribers.add(routeAware)) {
       routeAware.didPush();
       Future.delayed(route!.transitionDuration, () {

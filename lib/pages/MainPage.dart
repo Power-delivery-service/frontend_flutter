@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:latlng/latlng.dart';
 import 'package:map/map.dart';
 import 'package:rosseti/top_bar.dart';
+import 'package:nice_buttons/nice_buttons.dart';
 
 import 'Response.dart';
 
@@ -46,8 +47,6 @@ class MainPageState extends State<MainPage> {
     setState(() {});
   }
 
-
-
   Offset? _dragStart;
   double _scaleStart = 1.0;
   void _onScaleStart(ScaleStartDetails details) {
@@ -76,7 +75,6 @@ class MainPageState extends State<MainPage> {
 
   String name = ""; //user's response will be assigned to this variable
 
-
   @override
   Widget build(BuildContext context) {
     size = MediaQuery.of(context).size;
@@ -85,43 +83,30 @@ class MainPageState extends State<MainPage> {
 
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size(width, 70),
-        child: TopBarContents()),
+          preferredSize: Size(width, 100), child: TopBarContents()),
       body: MapLayout(
-        controller: controller,
-        builder: (context, transformer) {
-          return GestureDetector(
+          controller: controller,
+          builder: (context, transformer) {
+            return GestureDetector(
               behavior: HitTestBehavior.opaque,
-              onDoubleTapDown: (details) =>
-                  _onDoubleTap(
-                    transformer,
-                    details.localPosition,
-                  ),
+              onDoubleTapDown: (details) => _onDoubleTap(
+                transformer,
+                details.localPosition,
+              ),
               onScaleStart: _onScaleStart,
               onScaleUpdate: (details) => _onScaleUpdate(details, transformer),
               child: Listener(
-                behavior: HitTestBehavior.opaque,
-                onPointerSignal: (event) {
-                  if (event is PointerScrollEvent) {
-                    final delta = event.scrollDelta.dy / -1000.0;
-                    final zoom = clamp(controller.zoom + delta, 2, 18);
-                    transformer.setZoomInPlace(zoom, event.localPosition);
-                    print(event.localPosition);
-                    setState(() {});
-                  }
-                },
-                child: Stack(
-                  children: <Widget>[
-                    Center(
-                      child:
-                      SizedBox(
-                        width: 200,
-                        height: 50,
-                        child: Image.asset('assets/point.png'),
-                      ),
-
-
-                    ),
+                  behavior: HitTestBehavior.opaque,
+                  onPointerSignal: (event) {
+                    if (event is PointerScrollEvent) {
+                      final delta = event.scrollDelta.dy / -1000.0;
+                      final zoom = clamp(controller.zoom + delta, 2, 18);
+                      transformer.setZoomInPlace(zoom, event.localPosition);
+                      print(event.localPosition);
+                      setState(() {});
+                    }
+                  },
+                  child: Stack(children: <Widget>[
                     TileLayer(
                       builder: (context, x, y, z) {
                         //x = 23;
@@ -134,26 +119,63 @@ class MainPageState extends State<MainPage> {
                             'https://www.google.com/maps/vt/pb=!1m4!1m3!1i$z!2i$x!3i$y!2m3!1e0!2sm!3i420120488!3m7!2sen!5e1105!12m4!1e68!2m2!1sset!2sRoadmap!4e0!5m1!1e0!23i4111425';
                         return CachedNetworkImage(
                           imageUrl: url,
-                          fit: BoxFit.cover,);
+                          fit: BoxFit.cover,
+                        );
                       },
+                    ),
+                    Center(
+                      child: SizedBox(
+                        width: 200,
+                        height: 50,
+                        child: Image.asset('assets/point2.png'),
+                      ),
                     ),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                                padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                child: SizedBox(
+                                  width: 200,
+                                  height: 90,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: NiceButtons(
+                                      stretch: false,
+                                      borderRadius: 30,
+                                      gradientOrientation:
+                                          GradientOrientation.Horizontal,
+                                      onTap: () async {
+                                        const url =
+                                            'http://192.168.43.172:7777/set_geodata';
+                                        final response = await http.post(
+                                          Uri.parse(url),
+                                          headers: <String, String>{
+                                            'Content-Type': 'application/json'
+                                          },
+                                          body: jsonEncode(<String, String>{
+                                            'point_start_x': startX,
+                                            'point_start_y': startY,
+                                            'point_target_x': targetX,
+                                            'point_target_y': targetY
+                                          }),
+                                        );
+                                      },
+                                      child: Text(
+                                        'Заказать доставку',
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 18),
+                                      ),
+                                    ),
+                                  ),
 
-                                  Padding(
-                                    padding: const EdgeInsets.fromLTRB(0,0,0,0),
-                                    child: SizedBox(
-
-                                      width: 200,
-                                      height: 100,
-                                      child: ElevatedButton(onPressed: () async {
-                                        //Navigator.pushNamedAndRemoveUntil(context,'/categories',(route)=> true);
-                                        // await createAlbum(MainPageState().startX,startY,targetX,targetY);
-                                        /*
+                                  // ElevatedButton(onPressed: () async {
+                                  //Navigator.pushNamedAndRemoveUntil(context,'/categories',(route)=> true);
+                                  // await createAlbum(MainPageState().startX,startY,targetX,targetY);
+                                  /*
                                         POST /set_geodata HTTP/1.1
                                         Accept: * / * (убрать пробел перед и после /)
                                         Accept-Encoding: gzip, deflate, br
@@ -172,42 +194,27 @@ class MainPageState extends State<MainPage> {
                                         sec-ch-ua-mobile: ?0
                                         sec-ch-ua-platform: "Windows"
                                          */
-                                        final url = 'http://192.168.43.172:7777/set_geodata';
-                                        final response = await http.post(Uri.parse(url),    headers: <String, String>{
-                                          'Content-Type': 'application/json'
-                                        },
-                                          body: jsonEncode(<String, String>{
-                                            'point_start_x': startX,
-                                            'point_start_y': startY,
-                                            'point_target_x': targetX,
-                                            'point_target_y': targetY
-                                          }),);
-                                      },
-                                          child: const Text('Заказать доставку'),
-
-                                          style: ElevatedButton.styleFrom(shape: StadiumBorder())),
-
-                                    ),
-                                  ),
-                                ],
-                              ),
+                                  //
+                                  //         child: const Text('Заказать доставку'),
+                                  //
+                                  //         style: ElevatedButton.styleFrom(shape: StadiumBorder())),
+                                  //
+                                  //   ),
+                                  // ),
+                                ))
+                          ],
+                        ),
                       ],
                     ),
-                        ])
-
-                ),
-              );
-        }),
-
-
+                  ])),
+            );
+          }),
       floatingActionButton: FloatingActionButton(
         onPressed: _gotoDefault,
         tooltip: 'Я на карте',
         backgroundColor: Colors.red,
         child: const Icon(Icons.my_location),
       ),
-
-
     );
   }
 }

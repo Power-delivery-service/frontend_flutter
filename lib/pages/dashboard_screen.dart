@@ -23,7 +23,7 @@ class _DashboardScreenState extends State<DashboardScreen>
   Future<bool> _goToLogin(BuildContext context) {
     return Navigator.of(context)
         .pushReplacementNamed('/auth')
-    // we dont want to pop the screen, just replace it completely
+        // we dont want to pop the screen, just replace it completely
         .then((_) => false);
   }
 
@@ -43,9 +43,9 @@ class _DashboardScreenState extends State<DashboardScreen>
 
     _headerScaleAnimation =
         Tween<double>(begin: .6, end: 1).animate(CurvedAnimation(
-          parent: _loadingController!,
-          curve: headerAniInterval,
-        ));
+      parent: _loadingController!,
+      curve: headerAniInterval,
+    ));
   }
 
   @override

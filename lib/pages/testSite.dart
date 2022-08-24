@@ -68,11 +68,14 @@ class TestPageState extends State<TestPage> {
     return Scaffold(
       appBar: AppBar(
         title: Row(
-          children: [SizedBox(
-            width: 200,
-            height: 50,
-            child: Image.asset('assets/Log1.png'),
-          ), Text('Служба доставки мощности111')],
+          children: [
+            SizedBox(
+              width: 200,
+              height: 50,
+              child: Image.asset('assets/Log1.png'),
+            ),
+            Text('Служба доставки мощности111')
+          ],
         ),
         actions: [
           IconButton(
@@ -90,11 +93,10 @@ class TestPageState extends State<TestPage> {
         builder: (context, transformer) {
           return GestureDetector(
             behavior: HitTestBehavior.opaque,
-            onDoubleTapDown: (details) =>
-                _onDoubleTap(
-                  transformer,
-                  details.localPosition,
-                ),
+            onDoubleTapDown: (details) => _onDoubleTap(
+              transformer,
+              details.localPosition,
+            ),
             onScaleStart: _onScaleStart,
             onScaleUpdate: (details) => _onScaleUpdate(details, transformer),
             child: Listener(
@@ -111,7 +113,6 @@ class TestPageState extends State<TestPage> {
               },
               child: Stack(
                 children: <Widget>[
-
                   TileLayer(
                     builder: (context, x, y, z) {
                       //x = 23;
@@ -124,12 +125,12 @@ class TestPageState extends State<TestPage> {
                           'https://www.google.com/maps/vt/pb=!1m4!1m3!1i$z!2i$x!3i$y!2m3!1e0!2sm!3i420120488!3m7!2sen!5e1105!12m4!1e68!2m2!1sset!2sRoadmap!4e0!5m1!1e0!23i4111425';
                       return CachedNetworkImage(
                         imageUrl: url,
-                        fit: BoxFit.cover,);
+                        fit: BoxFit.cover,
+                      );
                     },
                   ),
                   Center(
-                    child:
-                    SizedBox(
+                    child: SizedBox(
                       width: 100,
                       height: 100,
                       child: Image.asset('assets/rail.jpg'),
@@ -138,151 +139,132 @@ class TestPageState extends State<TestPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-
-
                       Column(
                         children: [
                           Column(
                             children: [
-
                               SizedBox(
                                 width: 200,
                                 height: 50,
-                                child: ElevatedButton(onPressed: () {
-                                  Navigator.pushNamedAndRemoveUntil(
-                                      context, '/registration', (
-                                      route) => true);
-                                },
+                                child: ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.pushNamedAndRemoveUntil(context,
+                                          '/registration', (route) => true);
+                                    },
                                     child: const Text('О доставке')),
                               ),
                             ],
                           ),
                           Column(
                             children: [
-
                               SizedBox(
                                 width: 200,
                                 height: 50,
-                                child: ElevatedButton(onPressed: () {
-                                  Navigator.pushNamedAndRemoveUntil(
-                                      context, '/registration', (
-                                      route) => true);
-                                },
+                                child: ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.pushNamedAndRemoveUntil(context,
+                                          '/registration', (route) => true);
+                                    },
                                     child: const Text('Документы')),
                               ),
                             ],
                           ),
                           Column(
                             children: [
-
                               SizedBox(
                                 width: 200,
                                 height: 50,
-                                child: ElevatedButton(onPressed: () {
-                                  Navigator.pushNamedAndRemoveUntil(
-                                      context, '/registration', (
-                                      route) => true);
-                                },
+                                child: ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.pushNamedAndRemoveUntil(context,
+                                          '/registration', (route) => true);
+                                    },
                                     child: const Text('Приём на работу')),
                               ),
                             ],
                           ),
                           Column(
                             children: [
-
                               SizedBox(
                                 width: 200,
                                 height: 50,
-                                child: ElevatedButton(onPressed: () {
-                                  Navigator.pushNamedAndRemoveUntil(
-                                      context, '/registration', (
-                                      route) => true);
-                                },
+                                child: ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.pushNamedAndRemoveUntil(context,
+                                          '/registration', (route) => true);
+                                    },
                                     child: const Text('Контактные данные')),
                               ),
-
-
                               Padding(
-                                padding: const EdgeInsets.fromLTRB(
-                                    0, 300, 0, 0),
+                                padding:
+                                    const EdgeInsets.fromLTRB(0, 300, 0, 0),
                                 child: SizedBox(
-
                                   width: 200,
                                   height: 100,
-                                  child: ElevatedButton(onPressed: () {
-                                    Navigator.pushNamedAndRemoveUntil(
-                                        context, '/categories', (
-                                        route) => true);
-                                    print(
-                                        controller.center.latitude.toString() +
-                                            " " + controller.center.longitude
-                                            .toString());
-                                  },
+                                  child: ElevatedButton(
+                                      onPressed: () {
+                                        Navigator.pushNamedAndRemoveUntil(
+                                            context,
+                                            '/categories',
+                                            (route) => true);
+                                        print(controller.center.latitude
+                                                .toString() +
+                                            " " +
+                                            controller.center.longitude
+                                                .toString());
+                                      },
                                       child: const Text('Заказать доставку'),
-
                                       style: ElevatedButton.styleFrom(
                                           shape: StadiumBorder())),
-
                                 ),
                               ),
                             ],
                           ),
-
                         ],
                       ),
-
-
                       Column(
-
-                        children: [CircleAvatar(
-                          backgroundImage: AssetImage('assets/reg.png'),
-                          radius: 25,
-                          //backgroundColor: Colors.orangeAccent,
-                        ),
+                        children: [
+                          CircleAvatar(
+                            backgroundImage: AssetImage('assets/reg.png'),
+                            radius: 25,
+                            //backgroundColor: Colors.orangeAccent,
+                          ),
                           SizedBox(
                             width: 200,
                             height: 40,
-
-                            child: ElevatedButton(onPressed: () {
-                              Navigator.pushNamedAndRemoveUntil(
-                                  context, '/registration', (route) => true);
-                            },
+                            child: ElevatedButton(
+                              onPressed: () {
+                                Navigator.pushNamedAndRemoveUntil(
+                                    context, '/registration', (route) => true);
+                              },
                               child: const Text('Зарегистрироваться'),
                               style: ElevatedButton.styleFrom(
                                   shape: StadiumBorder()),
-
                             ),
                           ),
                         ],
                       ),
-
                     ],
                   ),
-
                   Center(
-                    child:
-                    SizedBox(
+                    child: SizedBox(
                       width: 200,
                       height: 50,
                       child: Image.asset('assets/point.png'),
                     ),
                   ),
-
                 ],
               ),
             ),
           );
         },
       ),
-
       floatingActionButton: FloatingActionButton(
         onPressed: _gotoDefault,
         tooltip: 'Я на карте',
         backgroundColor: Colors.red,
         child: const Icon(Icons.my_location),
       ),
-
-
     );
   }
 }
