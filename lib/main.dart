@@ -7,7 +7,7 @@ import 'package:map/map.dart';
 void main() => runApp(MaterialApp(
   debugShowCheckedModeBanner: false,
   theme: ThemeData(
-      primaryColor: Colors.deepOrangeAccent
+      primaryColor: const Color.fromRGBO(79, 79, 79, 1)
   ),
   initialRoute: '/',
     routes:{
