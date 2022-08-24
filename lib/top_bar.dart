@@ -26,13 +26,17 @@ class _TopBarContentsState extends State<TopBarContents> {
     return Container(
       color: Colors.white.withOpacity(0.5),
       child: Padding(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child:
         Expanded(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Text(
+              SizedBox(
+                  width:60,
+                  height:60,
+                  child: Image.asset("assets/logo.png",fit: BoxFit.fitWidth,)),
+              const Text(
                 'РЭД',
                 style: TextStyle(
                   color: Color(0xFF077bd7),
@@ -61,13 +65,13 @@ class _TopBarContentsState extends State<TopBarContents> {
                       'О проекте',
                       style: TextStyle(
                           color: _isHovering[0]
-                              ? Color(0xFF077bd7)
-                              : Color(0xFF077bd7),
+                              ? const Color(0xFF077bd7)
+                              : const Color(0xFF077bd7),
                           fontWeight: FontWeight.bold,
                           fontSize: 16
                       ),
                     ),
-                    SizedBox(height: 5),
+                    const SizedBox(height: 5),
                     Visibility(
                       maintainAnimation: true,
                       maintainState: true,
@@ -76,7 +80,7 @@ class _TopBarContentsState extends State<TopBarContents> {
                       child: Container(
                         height: 2,
                         width: 20,
-                        color: Color(0xFF051441),
+                        color: const Color(0xFF051441),
                       ),
                     )
                   ],
@@ -101,13 +105,13 @@ class _TopBarContentsState extends State<TopBarContents> {
                       'Условия доставки',
                       style: TextStyle(
                           color: _isHovering[1]
-                              ? Color(0xFF077bd7)
-                              : Color(0xFF077bd7),
+                              ? const Color(0xFF077bd7)
+                              : const Color(0xFF077bd7),
                           fontWeight: FontWeight.bold,
                           fontSize: 16
                       ),
                     ),
-                    SizedBox(height: 5),
+                    const SizedBox(height: 5),
                     Visibility(
                       maintainAnimation: true,
                       maintainState: true,
@@ -116,7 +120,7 @@ class _TopBarContentsState extends State<TopBarContents> {
                       child: Container(
                         height: 2,
                         width: 20,
-                        color: Color(0xFF051441),
+                        color: const Color(0xFF051441),
                       ),
                     )
                   ],
@@ -141,13 +145,13 @@ class _TopBarContentsState extends State<TopBarContents> {
                       'Прием на работу',
                       style: TextStyle(
                           color: _isHovering[2]
-                              ? Color(0xFF077bd7)
-                              : Color(0xFF077bd7),
+                              ? const Color(0xFF077bd7)
+                              : const Color(0xFF077bd7),
                           fontWeight: FontWeight.bold,
                           fontSize: 16
                       ),
                     ),
-                    SizedBox(height: 5),
+                    const SizedBox(height: 5),
                     Visibility(
                       maintainAnimation: true,
                       maintainState: true,
@@ -156,7 +160,7 @@ class _TopBarContentsState extends State<TopBarContents> {
                       child: Container(
                         height: 2,
                         width: 20,
-                        color: Color(0xFF051441),
+                        color: const Color(0xFF051441),
                       ),
                     )
                   ],
@@ -181,13 +185,13 @@ class _TopBarContentsState extends State<TopBarContents> {
                       'Контактные данные',
                       style: TextStyle(
                           color: _isHovering[3]
-                              ? Color(0xFF077bd7)
-                              : Color(0xFF077bd7),
+                              ? const Color(0xFF077bd7)
+                              : const Color(0xFF077bd7),
                           fontWeight: FontWeight.bold,
                           fontSize: 16
                       ),
                     ),
-                    SizedBox(height: 5),
+                    const SizedBox(height: 5),
                     Visibility(
                       maintainAnimation: true,
                       maintainState: true,
@@ -196,7 +200,47 @@ class _TopBarContentsState extends State<TopBarContents> {
                       child: Container(
                         height: 2,
                         width: 20,
-                        color: Color(0xFF051441),
+                        color: const Color(0xFF051441),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(width: screenSize.width / 20),
+              InkWell(
+                onHover: (value) {
+                  setState(() {
+                    value
+                        ? _isHovering[4] = true
+                        : _isHovering[4] = false;
+                  });
+                },
+                onTap: () {
+                  Navigator.pushNamedAndRemoveUntil(context,'/registration',(route)=> true);
+                },
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      'Зарегистрироваться',
+                      style: TextStyle(
+                          color: _isHovering[4]
+                              ? const Color(0xFF077bd7)
+                              : const Color(0xFF077bd7),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16
+                      ),
+                    ),
+                    const SizedBox(height: 5),
+                    Visibility(
+                      maintainAnimation: true,
+                      maintainState: true,
+                      maintainSize: true,
+                      visible: _isHovering[4],
+                      child: Container(
+                        height: 2,
+                        width: 20,
+                        color: const Color(0xFF051441),
                       ),
                     )
                   ],
